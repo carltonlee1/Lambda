@@ -10,7 +10,7 @@ created = time.ctime()
 epoch = str(int(time.time()))
 network_acl_id = 'acl-ffffffff'  #TODO fill in the network ACL ID to block (can be automated for multiple public NACLs)
 snsclient = boto3.client('sns')
-topic_ARN = 'arn:aws:sns:us-east-1:629573512286:Carlton'  # SNS Subscription ARN
+topic_ARN = 'arn:aws:sns:us-east-1:{accountID}:{SNSSubscriptionName}'  # SNS Subscription ARN
 
 """
 Scan table to get data for sorting

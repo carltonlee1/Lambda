@@ -12,8 +12,8 @@ Assumptions - You will need to seed a DynamoDB table with current NACLs or creat
 1. Receives alert from GuardDuty via Cloudwatch
 2. Cloudwatch triggers Lambda Function (this one)
 3. Scans DynamoDB for oldest NACL (goal here is to overwrite blocked IPs every so often as rogue IPs change and some become legitimate again over time)
-4. Overwrites oldest NACL based on epoch time
-5. Writes data to DynamoDB
+4. Deletes oldest NACL based on epoch time
+5. Writes data to DynamoDB (deletes oldest then rewrites with the same ID as you can't overwrite in DynamoDB)
 6. Sends SNS message to the subscription provided alerting Sysops/Secops that an IP was blocked.
 
 I have a few extra print lines for Cloudwatch logging to read if something bombs. Then I know where the error possibly occurred if a failure happens.
